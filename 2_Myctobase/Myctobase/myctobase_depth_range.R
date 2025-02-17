@@ -1,5 +1,5 @@
 #creation date: 11/02/2025
-#last modification: 13/02/2025
+#last modification: 18/02/2025
 #author: Niamh Smith
 #
 # content: analyse all southern ocean data in myctobase to get
@@ -20,7 +20,7 @@ library(mgcv)
 # import data -------------------------------------------------------------
 # Set locale
 Sys.setlocale("LC_TIME", "English")
-event <- read_csv("E:/lanternfish/5_Data_analysis/2_Myctobase/event.csv")
+event <- read_csv("E:/lanternfish/5_Data_analyss/2_Myctobase/event.csv")
 groupOccurrence <- read_csv("E:/lanternfish/5_Data_analysis/2_Myctobase/groupOccurrence.csv")
 individualOccurrence <- read_csv("E:/lanternfish/5_Data_analysis/2_Myctobase/individualOccurrence.csv")
 
@@ -254,7 +254,7 @@ for (scientificName in species) {
     ggplot(subset_data)+
     geom_point(aes(x = avgDepth, y = standard_length_T, colour = diel))+
     geom_smooth(method = "lm", aes(x = avgDepth, y = standard_length_T, colour = diel), fill = "grey", alpha = 0.3)+
-    geom_smooth(method = "lm", aes(x = avgDepth, y = standard_length_T), colour = 'black', fill = "grey", alpha = 0.3)+
+    geom_smooth(method = "gam", aes(x = avgDepth, y = standard_length_T), colour = 'black', fill = "grey", alpha = 0.3)+
     labs(title = scientificName, y = 'Standard length', x = 'Depth')+
     scale_x_continuous(limits = c(0, 1000))+
     theme_bw()
@@ -269,3 +269,7 @@ for (scientificName in species) {
   )
   
 }
+
+
+
+
