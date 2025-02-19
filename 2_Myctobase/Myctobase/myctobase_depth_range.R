@@ -20,7 +20,7 @@ library(mgcv)
 # import data -------------------------------------------------------------
 # Set locale
 Sys.setlocale("LC_TIME", "English")
-event <- read_csv("E:/lanternfish/5_Data_analyss/2_Myctobase/event.csv")
+event <- read_csv("E:/lanternfish/5_Data_analysis/2_Myctobase/event.csv")
 groupOccurrence <- read_csv("E:/lanternfish/5_Data_analysis/2_Myctobase/groupOccurrence.csv")
 individualOccurrence <- read_csv("E:/lanternfish/5_Data_analysis/2_Myctobase/individualOccurrence.csv")
 
@@ -241,6 +241,7 @@ for (month in months) {
 myctobase_depth_size <- full_join(myctobase_depth, individualOccurrence) %>% 
   filter(diel == 'night' | diel == 'day')
 
+
 # plots of size-depth relationship and GAM results
 for (scientificName in species) {
   subset_data <- myctobase_depth_size %>% 
@@ -254,7 +255,7 @@ for (scientificName in species) {
     ggplot(subset_data)+
     geom_point(aes(x = avgDepth, y = standard_length_T, colour = diel))+
     geom_smooth(method = "lm", aes(x = avgDepth, y = standard_length_T, colour = diel), fill = "grey", alpha = 0.3)+
-    geom_smooth(method = "gam", aes(x = avgDepth, y = standard_length_T), colour = 'black', fill = "grey", alpha = 0.3)+
+    geom_smooth(method = "lm", aes(x = avgDepth, y = standard_length_T), colour = 'black', fill = "grey", alpha = 0.3)+
     labs(title = scientificName, y = 'Standard length', x = 'Depth')+
     scale_x_continuous(limits = c(0, 1000))+
     theme_bw()
@@ -269,7 +270,6 @@ for (scientificName in species) {
   )
   
 }
-
 
 
 
