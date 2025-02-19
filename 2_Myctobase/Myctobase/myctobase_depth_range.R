@@ -262,14 +262,11 @@ for (scientificName in species) {
   )
   
   print(scientificName)
-  gam_results <- gam(standard_length_T~avgDepth+diel, data = subset_data)
+  lm_results <- lm(standard_length_T~avgDepth, data = subset_data)
   
   
   print(
-    summary(gam_results)
+    summary(lm_results)
   )
   
 }
-
-
-
